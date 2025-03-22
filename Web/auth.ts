@@ -1,6 +1,6 @@
 import { Data, user } from "./interface";
 import { getData, setData } from "./dataStore";
-import {nameCheck, emailCheck, passwordCheck} from "./other.ts"
+import {nameCheck, emailCheck, passwordCheck} from "./other"
 
 export function register(userName: string, email: string, password: string) {
     const data: Data = getData();
@@ -27,7 +27,12 @@ export function register(userName: string, email: string, password: string) {
         email: email,
         password: password
     }
-    return 0;
+    data.users.push(user);
+    setData(data);
 }
 
-function login(email: string, password: string) {}
+export function login(email: string, password: string) {}
+
+export function passwordUpdate(userId: number, currentPasswords: string, newPassword: string) {}
+
+export function detailsUpdate(userId:number, emai:string, userName:string) {}

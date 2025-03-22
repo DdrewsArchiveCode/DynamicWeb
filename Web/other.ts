@@ -1,4 +1,5 @@
 import * as EmailValidator from 'email-validator';
+
 export function passwordCheck(password: String):boolean{
     let lengthCheck: boolean = false;
     let lowerCase: boolean = false;
@@ -27,6 +28,12 @@ export function passwordCheck(password: String):boolean{
 }
 
 export function nameCheck (name: String):boolean {
+    let lengthCheck = false;
+
+    if (name.length < 2) {
+        lengthCheck = false;
+    }
+    
     return false;
 }
 
