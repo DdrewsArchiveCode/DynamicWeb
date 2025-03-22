@@ -1,10 +1,14 @@
 export interface user {
-    userName: String,
+    name: String,
     password: String,
     email: String,
     UserId: Number
 }
 
 export interface Data {
-    users: user[]
+    users: user[];
 }
+
+// export interface {
+
+// }

@@ -1,9 +1,13 @@
-import { Data } from "./interface";
+import { Data, user } from "./interface";
 
-export function getData() {
-    //return data;
+let data :Data = {
+    users: []
 }
 
-export function setData(data: Data) {
-    //data1.push(data);
+export function getData():Data {
+    return data;
+}
+
+export function setData(newData: Data) {
+    data = newData;
 }
