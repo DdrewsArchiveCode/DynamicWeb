@@ -1,0 +1,13 @@
+button{
+  size: 20px;
+  
+}
+
+.login{
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
+  font-size: 20px;
+}
