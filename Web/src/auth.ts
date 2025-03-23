@@ -1,6 +1,7 @@
 import { user, Data } from "./interface";
 import { getData, setData } from "./dataStore";
-import { checkEmail, checkName, checkPassword } from "./other";
+import { checkEmail, checkName, checkPassword, hashPassword } from "./other";
+import crypto from 'crypto';
 
 export function register(userName: string, email: string, password: string) {
     const data: Data = getData();
@@ -21,12 +22,17 @@ export function register(userName: string, email: string, password: string) {
     }
 
     const userId: number = data.users.length + 10001;
+    const salt: string = crypto.randomBytes(16).toString("hex");
+    const saltedPassword:string = salt + password;
+    const hashedPassword:Promise<{hash:string}> = hashPassword(saltedPassword);
+
     const user: user = {
         UserId: userId,
         userName: userName,
         email: email,
-        password: password,
+        passwordSecured: hashedPassword,
         active: true,
+        salt: salt,
         session: undefined
     }
     data.users.push(user);
@@ -41,11 +47,13 @@ export function login(userId: number, password: string) {
     if (user == undefined) {
         throw new Error("User haven't been registered or incorrect userId");
     }
-    if (user.password != password) {
+    const newPassword:string = user.salt + password;
+    const hashedPassword: Promise<{hash:string}> = hashPassword(newPassword);
+    if (user.passwordSecured != hashedPassword) {
         throw new Error("The given password does not match");
     }
 
-    if (user != undefined && user.password === password) {
+    if (user != undefined && user.passwordSecured === hashedPassword) {
         user.active = true;
         user.session = 1;
     } 

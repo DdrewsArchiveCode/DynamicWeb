@@ -1,4 +1,7 @@
 import validator from 'validator';
+import crypto from 'crypto';
+import argon2 from 'argon2';
+import { promises } from 'dns';
 
 export function checkName (name: string): Boolean {
     let lengthCheck = false;
@@ -50,4 +53,9 @@ export function checkPassword (password: string):boolean {
         return true;
     }
     return false;
+}
+
+export async function hashPassword(password: string):Promise<{hash:string}> {
+    const hash = await argon2.hash(password, {type: argon2.argon2id});
+    return {hash};
 }

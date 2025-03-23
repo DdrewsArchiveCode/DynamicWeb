@@ -10,6 +10,7 @@
   "dependencies": {
     "@types/cookie-parser": "^1.4.8",
     "@types/node": "^22.13.11",
+    "argon2": "^0.41.1",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "jest": "^29.7.0",
@@ -22,6 +23,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/argon2": "^0.14.1",
     "@types/express": "^5.0.1",
     "@types/validator": "^13.12.2"
   }
