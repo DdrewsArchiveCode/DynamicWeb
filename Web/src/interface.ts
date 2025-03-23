@@ -1,9 +1,10 @@
 export interface user {
     UserId: Number,
     userName: String,
-    password: String,
+    passwordSecured: Promise<{hash:string}>,
     email: String,
-    active:boolean
+    active:boolean,
+    salt: string,
     session: number|undefined
 }
 
