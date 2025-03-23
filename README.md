@@ -1,1 +1,1 @@
-This is made by me in help of my friends for this project, we use ts for the backend and implement it on php to make a dynamic website
+This is my personal project to learn Ts and React, however Chat GPT has helped me a lot for the React side
