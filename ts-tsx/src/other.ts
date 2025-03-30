@@ -1,5 +1,5 @@
 import validator from 'validator';
-import argon2 from 'argon2';
+import bcrypt from "bcrypt";
 
 export function checkName (name: string): Boolean {
     let lengthCheck = false;
@@ -53,12 +53,13 @@ export function checkPassword (password: string):boolean {
     return false;
 }
 
-export async function hashPassword(password: string):Promise<string> {
-    const hash:string = await argon2.hash(password, {type:argon2.argon2id});
+export function hashPassword(password: string):string {
+    const saltRounds = 10;
+    const hash:string = bcrypt.hashSync(password, saltRounds);
     return hash;
 }
 
-export async function hashVerify(currentPassword:string, inputPassword:string): Promise<boolean> {
-    const check:boolean = await argon2.verify(currentPassword, inputPassword);
+export function hashVerify(currentPassword:string, inputPassword:string): boolean {
+    const check:boolean = bcrypt.compareSync(currentPassword, inputPassword);
     return check;
 }

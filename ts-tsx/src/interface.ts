@@ -4,7 +4,6 @@ export interface user {
     passwordSecured: string,
     email: String,
     active:boolean,
-    salt: string,
     session: string | undefined
 }
 
